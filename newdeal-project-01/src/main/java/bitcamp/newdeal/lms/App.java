@@ -5,7 +5,7 @@ package bitcamp.newdeal.lms;
 
 public class App {
     public String getGreeting() {
-        return "Hello world.";
+        return "Hello world2.";
     }
 
     public static void main(String[] args) {
