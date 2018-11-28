@@ -15,6 +15,7 @@ public class App3 {
       
       int viewCount = 0;
       
+      keyIn.close();
       
       System.out.printf("번호: %d\n", no);
       System.out.printf("내용: %s\n", contents);
