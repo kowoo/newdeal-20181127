@@ -24,6 +24,17 @@ public class App {
       //인스턴스와 상관없이 보편적인 값을 가지고 있다면
       //스태틱을 붙인다.
       
+      //project-02를 복사해서 project-03으로 만들면
+      //이클립스에서 임포트가 안된다.
+      //왜? 이클립스는 .project 안에 있는 name의 이름으로
+      //폴더를 구분하는데 이건 복사해도 같은 값이기 때문
+      //하지만 여기 있는 정보를 03으로 바꿔도 다시 실행하면
+      //02로 돌아가버린다.
+      //이런 현상을 방지하려면
+      //settings.gradle의 name를 수정하고 03 폴더로 간 뒤
+      //gradle eclipse를 하면 된다.
+      
+      
       
 //      String str = keyIn.nextLine();
 //      System.out.println(str);
