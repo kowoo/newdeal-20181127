@@ -1,0 +1,5 @@
+﻿1. Open JDK 설치
+  - JAVA_HOME 환경 변수 설정
+  - PATH 환경 변수에 jdk/bin 폴더 추가
+2. Visual Studio Code 설치
+3. git Client 설치
