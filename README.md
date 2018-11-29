@@ -10,6 +10,10 @@
 
 - github.com/eomcs/eomcs-java-project 에서 v1.5 과제 해결
 
-## 04 : n
+## 04 : 클래스와 데이터 타입
 
- - github.com/eomcs/eomcs-java-project 에서 v1.n 과제 해결
+ - github.com/eomcs/eomcs-java-project 에서 v1.6 과제 해결
+
+## 05 : 기본 문법의 활용
+
+ - github.com/eomcs/eomcs-java-project 에서 v1.7 과제 해결
