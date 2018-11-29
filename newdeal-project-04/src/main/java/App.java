@@ -9,36 +9,40 @@ public class App {
 
     final int LENGTH = 10;
     
-    int[] no = new int[LENGTH];
-    String[] title = new String[LENGTH];
-    String[] contents = new String[LENGTH];
-    Date[] startDate = new Date[LENGTH];
-    Date[] endDate = new Date[LENGTH];
-    int[] totalHours = new int[LENGTH];
-    int[] dayHours = new int[LENGTH];
+    Lesson[] lessons = new Lesson[LENGTH];
     
     int i = 0;
     while (i < LENGTH) {
+      lessons[i] = new Lesson();
+      //객체는 일반적인 용어
+      //인스턴스는 해당 객체를 정확히 말하는 것.
+      //객체 == 자동차, 인스턴스 == 내 자동차?
+      
+      //기초상식
+      //lessons[i].no = Integer.parseInt(keyboard.nextLine());
+      //이렇게 하면 lessons[i]에는 주소값을 저장하는 공간이므로 아무 값도 안들어가 있는 null에다가 뭔가를 넣는 행위가 된다.
+      //c++에서는 객체 배열이 생성가능 하기 때문에 이렇게 하는게 맞지만 자바는 그렇지 않음!
+      
       System.out.print("번호? ");
-      no[i] = Integer.parseInt(keyboard.nextLine());
+      lessons[i].no = Integer.parseInt(keyboard.nextLine());
       
       System.out.print("수업명? ");
-      title[i] = keyboard.nextLine();
+      lessons[i].title = keyboard.nextLine();
       
       System.out.print("설명? ");
-      contents[i] = keyboard.nextLine();
+      lessons[i].contents = keyboard.nextLine();
       
       System.out.print("시작일? ");
-      startDate[i] = Date.valueOf(keyboard.nextLine());
+      lessons[i].startDate = Date.valueOf(keyboard.nextLine());
       
       System.out.print("종료일? ");
-      endDate[i] = Date.valueOf(keyboard.nextLine());
+      lessons[i].endDate = Date.valueOf(keyboard.nextLine());
       
       System.out.print("총수업시간? ");
-      totalHours[i] = Integer.parseInt(keyboard.nextLine());
+      lessons[i].totalHours = Integer.parseInt(keyboard.nextLine());
       
       System.out.print("일수업시간? ");
-      dayHours[i] = Integer.parseInt(keyboard.nextLine());
+      lessons[i].dayHours = Integer.parseInt(keyboard.nextLine());
       
       i++; // 배열의 인덱스를 증가시킨다.
       
@@ -61,7 +65,8 @@ public class App {
     // 배열에 입력한 개수만큼 출력한다.
     for (int j = 0; j < i; j++) {
       System.out.printf("%3d, %-15s, %10s ~ %10s, %4d\n", 
-          no[j], title[j], startDate[j], endDate[j], totalHours[j]);
+          lessons[j].no, lessons[j].title, lessons[j].startDate,
+          lessons[j].endDate, lessons[j].totalHours);
     }
   }
 }
