@@ -33,7 +33,7 @@ public class App2 {
         picture[i] = keyIn.nextLine();
         System.out.print("전화? ");
         tel[i] = keyIn.nextLine();
-        signDate[i] = new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date());
+        signDate[i] = new Date(System.currentTimeMillis()).toString();
         len++;
         
         System.out.print("계속 입력하시겠습니까?(Y,n) ");

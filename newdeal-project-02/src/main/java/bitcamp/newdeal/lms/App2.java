@@ -1,7 +1,6 @@
 package bitcamp.newdeal.lms;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class App2 {
@@ -20,7 +19,7 @@ public class App2 {
       String picture = keyIn.nextLine();
       System.out.print("전화? ");
       String tell = keyIn.nextLine();
-      String signDate = new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date());
+      String signDate = new Date(System.currentTimeMillis()).toString();
       
       keyIn.close();
       

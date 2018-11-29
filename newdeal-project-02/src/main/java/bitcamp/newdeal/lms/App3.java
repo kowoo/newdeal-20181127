@@ -1,6 +1,6 @@
 package bitcamp.newdeal.lms;
 
-import java.text.SimpleDateFormat;
+import java.sql.Date;
 import java.util.Scanner;
 
 public class App3 {
@@ -11,7 +11,7 @@ public class App3 {
       int no = Integer.parseInt(keyIn.nextLine());
       System.out.print("내용? ");
       String contents = keyIn.nextLine();
-      String writeDate = new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date());
+      String writeDate = new Date(System.currentTimeMillis()).toString();
       
       int viewCount = 0;
       
