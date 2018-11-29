@@ -7,16 +7,6 @@ public class App {
   public static void main(String[] args) {
     Scanner keyIn = new Scanner(System.in);
 
-    //JVM이 실행될 때 OS로 부터 일정 메모리를 할당 받는다.
-    //이 할당받은 메모리를 3개의 영역으로 구분한다.
-    //1. Heap
-    //2. Method Area
-    //3. Stack
-    //스택은 여러개로 구성되는데 메인 메서드가 사용하는 스택과
-    //각각의 메서드가 가지는 스택으로 나뉘어진다.
-    //고로 스택은 쓰레드당 1개
-
-
     final int DEFAULT_SIZE = 20;
     int[] no = new int[DEFAULT_SIZE];
     String[] title = new String[DEFAULT_SIZE];
