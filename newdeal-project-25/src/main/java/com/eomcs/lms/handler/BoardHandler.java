@@ -9,20 +9,22 @@ public class BoardHandler {
   
   Scanner keyboard;
   Board[] boards = new Board[LENGTH];
-  int boardIdx = 0;
+  BoardList list;
 
   public BoardHandler(Scanner keyboard) {
     this.keyboard = keyboard;
+    this.list = new BoardList();
   }
-  
+
   public void listBoard() {
-    for (int j = 0; j < this.boardIdx; j++) {
+    boards = list.toArray();
+    for (int j = 0; j < boards.length; j++) {
       System.out.printf("%3d, %-20s, %s, %d\n", 
           this.boards[j].getNo(), this.boards[j].getContents(), 
           this.boards[j].getCreatedDate(), this.boards[j].getViewCount());
     }
   }
-
+  
   public void addBoard() {
     Board board = new Board();
     
@@ -36,9 +38,7 @@ public class BoardHandler {
     
     board.setViewCount(0);
     
-    this.boards[this.boardIdx] = board;
-    this.boardIdx++;
-    
+    list.add(board);
     System.out.println("저장하였습니다.");
   }
 
