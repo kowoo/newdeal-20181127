@@ -38,6 +38,22 @@
 
  - github.com/eomcs/eomcs-java-project 에서 v2.2 과제 해결
  
- ## 24 : 
+ ## 24 : 생성자, getter/setter 사용
 
  - github.com/eomcs/eomcs-java-project 에서 v2.4 과제 해결
+
+ ## 25 : 데이터 처리 코드를 별도의 처리 클래스로 분리
+
+ - github.com/eomcs/eomcs-java-project 에서 v2.5 과제 해결
+
+ ## 26 : 다형성, 다형적 변수, 제네릭
+
+ - github.com/eomcs/eomcs-java-project 에서 v2.6 과제 해결
+ 
+ ## 32 : 인터페이스로 규칙 정의하기
+
+ - github.com/eomcs/eomcs-java-project 에서 v3.2 과제 해결
+
+ ## 33 : 디자인 패턴
+
+ - github.com/eomcs/eomcs-java-project 에서 v3.3 과제 해결
