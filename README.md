@@ -48,12 +48,15 @@
 
  ## 26 : 다형성, 다형적 변수, 제네릭
 
- - github.com/eomcs/eomcs-java-project 에서 v2.6 과제 해결
+ - github.com/eomcs/eomcs-java-project 에서 v2.6, v2.7 과제 해결
  
- ## 32 : 인터페이스로 규칙 정의하기
+ ## 32 : 인터페이스, Iterator 디자인 패턴, 중첩 클래스 사용
 
- - github.com/eomcs/eomcs-java-project 에서 v3.2 과제 해결
+ - github.com/eomcs/eomcs-java-project 에서 v3.2, v3.3 과제 해결
 
- ## 33 : 디자인 패턴
+ ## 34 : 자바 컬렉션 API 사용, Command 디자인 패턴, 예외 처리
 
- - github.com/eomcs/eomcs-java-project 에서 v3.3 과제 해결
+ - github.com/eomcs/eomcs-java-project 에서 v3.4, v3.5, v3.6 과제 해결
+
+
+
