@@ -57,7 +57,6 @@
  ## 34 : 자바 컬렉션 API 사용, Command 디자인 패턴, 예외 처리
 
  - github.com/eomcs/eomcs-java-project 에서 v3.4, v3.5, v3.6 과제 해결
- 3.6 제외 전부 완료
 
 
 
