@@ -1,56 +1,62 @@
 package com.eomcs.lms.handler;
 
+import java.sql.Connection;
 import java.sql.Date;
-import java.util.List;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.Scanner;
-import com.eomcs.lms.domain.Lesson;
+import org.mariadb.jdbc.Driver;
 
 public class LessonAddCommand implements Command {
   
   Scanner keyboard;
-  List<Lesson> list;
-  Lesson lesson = new Lesson();
 
-  public LessonAddCommand(Scanner keyboard, List<Lesson> list) {
+  public LessonAddCommand(Scanner keyboard) {
     this.keyboard = keyboard;
-    this.list = list;
   }
   
   @Override
   public void execute() {
-    System.out.print("번호? ");
-    lesson.setNo(Integer.parseInt(keyboard.nextLine()));
-    
-    System.out.print("수업명? ");
-    lesson.setTitle(keyboard.nextLine());
-    
-    System.out.print("설명? ");
-    lesson.setContents(keyboard.nextLine());
-    
-    System.out.print("시작일? ");
-    lesson.setStartDate(Date.valueOf(keyboard.nextLine()));
-    
-    System.out.print("종료일? ");
-    lesson.setEndDate(Date.valueOf(keyboard.nextLine()));
-    
-    System.out.print("총수업시간? ");
-    lesson.setTotalHours(Integer.parseInt(keyboard.nextLine()));
-    
-    System.out.print("일수업시간? ");
-    lesson.setDayHours(Integer.parseInt(keyboard.nextLine()));
-    
-    list.add(lesson);
-    
-    System.out.println("저장하였습니다.");
-  }
-  
-  private int indexOfLesson(int no) {
-    for (int i = 0; i < list.size(); i++) {
-      Lesson l = list.get(i);
-      if (l.getNo() == no)
-        return i;
+    Connection con = null;
+    Statement stmt = null;
+
+    try {
+      DriverManager.registerDriver(new Driver());
+      con = DriverManager.getConnection(
+          "jdbc:mariadb://localhost:3306/studydb", "study", "1111");
+      stmt = con.createStatement();
+      
+      System.out.print("수업명? ");
+      String title = keyboard.nextLine();
+      System.out.print("설명? ");
+      String content = keyboard.nextLine();
+      System.out.print("시작일? ");
+      String sdt = keyboard.nextLine();
+      System.out.print("종료일? ");
+      String edt = keyboard.nextLine();
+      System.out.print("총수업시간? ");
+      String tot_hr = keyboard.nextLine();
+      System.out.print("일수업시간? ");
+      String day_hr = keyboard.nextLine();
+      System.out.print("학생번호? ");
+      String mno = keyboard.nextLine();
+      
+      stmt.executeUpdate(
+          "insert into lesson (title, cont, sdt, edt, tot_hr, day_hr, mno)"
+          + " values('"+ title + "',"
+          + " '"+ content + "', "
+          + sdt + ", "
+          + edt + ", "
+          + tot_hr + ", "
+          + day_hr + ", "
+          + mno + ")" );
+      System.out.println("저장하였습니다.");
+      
+    }catch (Exception e){
+      System.out.println(e.getStackTrace());
+    }finally {
+      try { stmt.close(); } catch (Exception e) {};
+      try { con.close(); } catch (Exception e) {};
     }
-    return -1;
   }
-    
 }

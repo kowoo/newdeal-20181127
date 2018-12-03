@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
-import com.eomcs.lms.domain.Board;
 import com.eomcs.lms.domain.Lesson;
 import com.eomcs.lms.domain.Member;
 import com.eomcs.lms.handler.BoardAddCommand;
@@ -44,11 +43,11 @@ public class App {
     commandMap.put("/board/update", new BoardUpdateCommand(keyboard));
     commandMap.put("/board/delete", new BoardDeleteCommand(keyboard));
     
-    commandMap.put("/lesson/list", new LessonListCommand(keyboard, lessons));
-    commandMap.put("/lesson/detail", new LessonDetailCommand(keyboard, lessons));
-    commandMap.put("/lesson/add", new LessonAddCommand(keyboard, lessons));
-    commandMap.put("/lesson/update", new LessonUpdateCommand(keyboard, lessons));
-    commandMap.put("/lesson/delete", new LessonDeleteCommand(keyboard, lessons));
+    commandMap.put("/lesson/list", new LessonListCommand(keyboard));
+    commandMap.put("/lesson/detail", new LessonDetailCommand(keyboard));
+    commandMap.put("/lesson/add", new LessonAddCommand(keyboard));
+    commandMap.put("/lesson/update", new LessonUpdateCommand(keyboard));
+    commandMap.put("/lesson/delete", new LessonDeleteCommand(keyboard));
     
     commandMap.put("/member/list", new MemberListCommand(keyboard, members));
     commandMap.put("/member/detail", new MemberDetailCommand(keyboard, members));

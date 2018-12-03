@@ -9,7 +9,9 @@ public class Lesson implements Cloneable {
   private Date endDate;
   private int totalHours;
   private int dayHours;
+  private int mno;
   
+
   @Override
   public Lesson clone() throws CloneNotSupportedException {
     return (Lesson) super.clone();
@@ -56,6 +58,13 @@ public class Lesson implements Cloneable {
   }
   public void setDayHours(int dayHours) {
     this.dayHours = dayHours;
+  }
+  public int getMno() {
+    return mno;
+  }
+  
+  public void setMno(int mno) {
+    this.mno = mno;
   }
   
   

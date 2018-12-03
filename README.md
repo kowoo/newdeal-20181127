@@ -58,5 +58,10 @@
 
  - github.com/eomcs/eomcs-java-project 에서 v3.4, v3.5, v3.6 과제 해결
 
+ ## 45 : 수정
+
+ - github.com/eomcs/eomcs-java-project 에서 v4.5 과제 해결
+ - 멤버 미완성, 수업 sql 확인
+
 
 

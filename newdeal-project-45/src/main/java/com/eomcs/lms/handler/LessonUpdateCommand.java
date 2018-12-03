@@ -1,76 +1,70 @@
 package com.eomcs.lms.handler;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Scanner;
+import org.mariadb.jdbc.Driver;
 import com.eomcs.lms.domain.Lesson;
 
 public class LessonUpdateCommand implements Command {
 
   Scanner keyboard;
-  List<Lesson> list;
 
-  public LessonUpdateCommand(Scanner keyboard, List<Lesson> list) {
+  public LessonUpdateCommand(Scanner keyboard) {
     this.keyboard = keyboard;
-    this.list = list;
   }
 
   @Override
   public void execute() {
-    System.out.print("번호? ");
-    int no = Integer.parseInt(keyboard.nextLine());
+    Connection con = null;
+    Statement stmt = null;
+    ResultSet rs = null;
 
-    int index = indexOfLesson(no);
-    if (index == -1) {
-      System.out.println("해당 수업을 찾을 수 없습니다.");
-      return;
-    }
-    
-    Lesson lesson = list.get(index);
-    
     try {
-      // 일단 기존 값을 복제한다.
-      Lesson temp = lesson.clone();
+      DriverManager.registerDriver(new Driver());
+      con = DriverManager.getConnection(
+          "jdbc:mariadb://localhost:3306/studydb", "study", "1111");
+      stmt = con.createStatement();
       
-      System.out.printf("수업명(%s)? ", lesson.getTitle());
-      String input = keyboard.nextLine();
-      if (input.length() > 0) 
-        temp.setTitle(input);
+      System.out.print("번호? ");
+      int no = Integer.parseInt(keyboard.nextLine());
+      rs = stmt.executeQuery("select title from lesson where lno="+no);
       
-      System.out.printf("설명(%s)? ", lesson.getContents());
-      if ((input = keyboard.nextLine()).length() > 0)
-        temp.setContents(input);
-      
-      System.out.printf("시작일(%s)? ", lesson.getStartDate());
-      if ((input = keyboard.nextLine()).length() > 0)
-        temp.setStartDate(Date.valueOf(input));
-      
-      System.out.printf("종료일(%s)? ", lesson.getEndDate());
-      if ((input = keyboard.nextLine()).length() > 0)
-        temp.setEndDate(Date.valueOf(input));
-      
-      System.out.printf("총수업시간(%d)? ", lesson.getTotalHours());
-      if ((input = keyboard.nextLine()).length() > 0)
-        temp.setTotalHours(Integer.parseInt(input));
-      
-      System.out.printf("일수업시간(%d)? ", lesson.getDayHours());
-      if ((input = keyboard.nextLine()).length() > 0)
-        temp.setDayHours(Integer.parseInt(input));
-      
-      list.set(index, temp);
-      
-      System.out.println("수업을 변경했습니다.");
-      
-    } catch (Exception e) {
-      System.out.println("변경 중 오류 발생!");
+      if (rs.next()) {
+        System.out.print("수업명? ");
+        String title = keyboard.nextLine();
+        System.out.print("설명? ");
+        String content = keyboard.nextLine();
+        System.out.print("시작일? ");
+        String sdt = keyboard.nextLine();
+        System.out.print("종료일? ");
+        String edt = keyboard.nextLine();
+        System.out.print("총수업시간? ");
+        String tot_hr = keyboard.nextLine();
+        System.out.print("일수업시간? ");
+        String day_hr = keyboard.nextLine();
+        
+        stmt.executeUpdate(
+            "update lesson set title='"+ title + "',"
+            + " cont='" + content + "',"
+            + " sdt=" + sdt + ","
+            + " edt=" + edt + ","
+            + " tot_hr=" + tot_hr + ","
+            + " day_hr=" + day_hr + ","
+            + " where lno="+ no);
+        System.out.println("수업을 변경했습니다.");
+      }else {
+        System.out.println("해당 수업을 찾을 수 없습니다.");
+      }
+    }catch (Exception e){
+      System.out.println(e.getStackTrace());
+    }finally {
+      try { rs.close(); } catch (Exception e) {};
+      try { stmt.close(); } catch (Exception e) {};
+      try { con.close(); } catch (Exception e) {};
     }
-  }
-  
-  private int indexOfLesson(int no) {
-    for (int i = 0; i < list.size(); i++) {
-      Lesson l = list.get(i);
-      if (l.getNo() == no)
-        return i;
-    }
-    return -1;
   }
 }
