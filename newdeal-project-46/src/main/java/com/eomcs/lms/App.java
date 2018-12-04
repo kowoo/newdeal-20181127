@@ -1,13 +1,11 @@
 package com.eomcs.lms;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
-import com.eomcs.lms.domain.Lesson;
-import com.eomcs.lms.domain.Member;
+import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.handler.BoardAddCommand;
 import com.eomcs.lms.handler.BoardDeleteCommand;
 import com.eomcs.lms.handler.BoardDetailCommand;
@@ -33,15 +31,14 @@ public class App {
   static Queue<String> commandHistory2 = new LinkedList<>();
 
   public static void main(String[] args) {
-    ArrayList<Lesson> lessons = new ArrayList<>();
-    ArrayList<Member> members = new ArrayList<>();
-
+    
+    BoardDao boardDao = new BoardDao();
     HashMap<String, Command> commandMap = new HashMap<>();
-    commandMap.put("/board/list", new BoardListCommand(keyboard));
-    commandMap.put("/board/detail", new BoardDetailCommand(keyboard));
-    commandMap.put("/board/add", new BoardAddCommand(keyboard));
-    commandMap.put("/board/update", new BoardUpdateCommand(keyboard));
-    commandMap.put("/board/delete", new BoardDeleteCommand(keyboard));
+    commandMap.put("/board/list", new BoardListCommand(keyboard, boardDao));
+    commandMap.put("/board/detail", new BoardDetailCommand(keyboard, boardDao));
+    commandMap.put("/board/add", new BoardAddCommand(keyboard, boardDao));
+    commandMap.put("/board/update", new BoardUpdateCommand(keyboard, boardDao));
+    commandMap.put("/board/delete", new BoardDeleteCommand(keyboard, boardDao));
     
     commandMap.put("/lesson/list", new LessonListCommand(keyboard));
     commandMap.put("/lesson/detail", new LessonDetailCommand(keyboard));

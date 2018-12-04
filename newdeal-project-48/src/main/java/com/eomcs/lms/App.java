@@ -1,13 +1,14 @@
 package com.eomcs.lms;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
-import com.eomcs.lms.domain.Lesson;
-import com.eomcs.lms.domain.Member;
+import com.eomcs.lms.dao.BoardDao;
+import com.eomcs.lms.dao.MemberDao;
+import com.eomcs.lms.dao.impl.MariaDBBoardDao;
+import com.eomcs.lms.dao.impl.MariaDBMemberDao;
 import com.eomcs.lms.handler.BoardAddCommand;
 import com.eomcs.lms.handler.BoardDeleteCommand;
 import com.eomcs.lms.handler.BoardDetailCommand;
@@ -20,6 +21,7 @@ import com.eomcs.lms.handler.LessonDeleteCommand;
 import com.eomcs.lms.handler.LessonDetailCommand;
 import com.eomcs.lms.handler.LessonListCommand;
 import com.eomcs.lms.handler.LessonUpdateCommand;
+import com.eomcs.lms.handler.LoginCommand;
 import com.eomcs.lms.handler.MemberAddCommand;
 import com.eomcs.lms.handler.MemberDeleteCommand;
 import com.eomcs.lms.handler.MemberDetailCommand;
@@ -33,15 +35,15 @@ public class App {
   static Queue<String> commandHistory2 = new LinkedList<>();
 
   public static void main(String[] args) {
-    ArrayList<Lesson> lessons = new ArrayList<>();
-    ArrayList<Member> members = new ArrayList<>();
-
+    
+    BoardDao boardDao = new MariaDBBoardDao();
+    MemberDao memberDao = new MariaDBMemberDao();
     HashMap<String, Command> commandMap = new HashMap<>();
-    commandMap.put("/board/list", new BoardListCommand(keyboard));
-    commandMap.put("/board/detail", new BoardDetailCommand(keyboard));
-    commandMap.put("/board/add", new BoardAddCommand(keyboard));
-    commandMap.put("/board/update", new BoardUpdateCommand(keyboard));
-    commandMap.put("/board/delete", new BoardDeleteCommand(keyboard));
+    commandMap.put("/board/list", new BoardListCommand(keyboard, boardDao));
+    commandMap.put("/board/detail", new BoardDetailCommand(keyboard, boardDao));
+    commandMap.put("/board/add", new BoardAddCommand(keyboard, boardDao));
+    commandMap.put("/board/update", new BoardUpdateCommand(keyboard, boardDao));
+    commandMap.put("/board/delete", new BoardDeleteCommand(keyboard, boardDao));
     
     commandMap.put("/lesson/list", new LessonListCommand(keyboard));
     commandMap.put("/lesson/detail", new LessonDetailCommand(keyboard));
@@ -56,6 +58,7 @@ public class App {
     commandMap.put("/member/delete", new MemberDeleteCommand(keyboard));
     
     commandMap.put("/hello", new HelloCommand(keyboard));
+    commandMap.put("/auth/login", new LoginCommand(keyboard, memberDao));
 
     while (true) {
       String command = prompt();
