@@ -1,5 +1,6 @@
 package com.eomcs.lms.handler;
 
+import java.sql.Date;
 import java.util.Scanner;
 import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.domain.Lesson;
@@ -16,7 +17,6 @@ public class LessonAddCommand implements Command {
   
   @Override
   public void execute() {
-    try {
       Lesson lesson = new Lesson();
       
       System.out.print("수업명? ");
@@ -24,22 +24,28 @@ public class LessonAddCommand implements Command {
       System.out.print("설명? ");
       lesson.setContents(keyboard.nextLine());
       System.out.print("시작일? ");
-      lesson.setStartDate(keyboard.nextLine());
+      lesson.setStartDate(Date.valueOf(keyboard.nextLine()));
       System.out.print("종료일? ");
-      lesson.setEndDate(keyboard.nextLine());
+      lesson.setEndDate(Date.valueOf(keyboard.nextLine()));
       System.out.print("총수업시간? ");
       lesson.setTotalHours(Integer.parseInt(keyboard.nextLine()));
       System.out.print("일수업시간? ");
       lesson.setDayHours(Integer.parseInt(keyboard.nextLine()));
       System.out.print("학생번호? ");
+      System.out.println(lesson);
       lesson.setMno(Integer.parseInt(keyboard.nextLine()));
       
+      System.out.println(lesson);
+      System.out.println("-----------------");
+      
+     try {
+      System.out.println("1111");
       lessonDao.insert(lesson);
       
       System.out.println("저장하였습니다.");
       
     }catch (Exception e){
-      System.out.println(e.getStackTrace());
+      System.out.printf("%s : %s\n", e.toString(), e.getMessage());
     }
   }
 }

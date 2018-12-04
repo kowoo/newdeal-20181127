@@ -65,6 +65,7 @@
  ## 46 : DAO 도입
 
  - github.com/eomcs/eomcs-java-project 에서 v4.6 과제 해결
+ - 여기 add부터 49까지 집에서 해결. 오류찾자...
 
  ## 47 : DAO에 인터페이스 적용
 

@@ -10,7 +10,6 @@ import org.mariadb.jdbc.Driver;
 import com.eomcs.lms.domain.Board;
 
 public class BoardDao {
-  public BoardDao() {};
 
   public List<Board> findAll() throws Exception {
     //바로 이 문법!
@@ -84,7 +83,10 @@ public class BoardDao {
         ) {
       
       //얘를 try with resources에 못 넣는 이유 = board가 autoCloseable이 아니라서.
-      return stmt.executeUpdate("insert into board(cont, mno, lno)"
+      System.out.println(board);
+      
+      return stmt.executeUpdate(
+          "insert into board(cont, mno, lno)"
           + " values('" + board.getContents() + "', "
           + board.getWriterNo() + ","
           + board.getLessonNo() + ")");
