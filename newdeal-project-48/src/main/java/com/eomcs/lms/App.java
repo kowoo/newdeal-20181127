@@ -53,7 +53,7 @@ public class App {
     
     commandMap.put("/member/list", new MemberListCommand(keyboard));
     commandMap.put("/member/detail", new MemberDetailCommand(keyboard));
-    commandMap.put("/member/add", new MemberAddCommand(keyboard));
+    commandMap.put("/member/add", new MemberAddCommand(keyboard, memberDao));
     commandMap.put("/member/update", new MemberUpdateCommand(keyboard));
     commandMap.put("/member/delete", new MemberDeleteCommand(keyboard));
     

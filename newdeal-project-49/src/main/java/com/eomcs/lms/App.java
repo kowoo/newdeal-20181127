@@ -39,7 +39,6 @@ public class App {
   static Queue<String> commandHistory2 = new LinkedList<>();
 
   public static void main(String[] args) throws Exception {
-
     //MyBatis SqlSessionFactory 준비
     String resource = "com/eomcs/lms/conf/mybatis-config.xml";
     InputStream inputStream = Resources.getResourceAsStream(resource);
