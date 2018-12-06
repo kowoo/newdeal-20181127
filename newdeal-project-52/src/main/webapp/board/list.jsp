@@ -12,7 +12,11 @@
 <title>게시물</title>
 </head>
 <body>
+
+<jsp:include page="/header.jsp"></jsp:include>
+
 <h1>게시물4</h1>
+<p><a href='add'>새 글</a></p>
 <table border='1'>
 	<tr>
 	 <th>번호</th><th>내용</th><th>작성일</th><th>조회수</th>

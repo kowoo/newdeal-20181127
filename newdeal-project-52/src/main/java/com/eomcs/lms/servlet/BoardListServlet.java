@@ -60,8 +60,6 @@ public class BoardListServlet extends HttpServlet {
     try {
       List<Board> list = boardDao.findAll();
       
-      System.out.println(list);
-      
       //게시물 목록을 JSP가 사용할 수 있도록 보관소에 저장한다.
       req.setAttribute("list", list);
       res.setContentType("text/html;charset=UTF-8");

@@ -21,13 +21,12 @@ public class MariaDBMemberDao implements MemberDao {
   @Override
   public Member findByEmailPassword(String email, String password) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
-      
       HashMap<String,Object> params = new HashMap<>();
       params.put("email", email);
       params.put("password", password);
-      
-      return sqlSession.selectOne(
+      Member m = sqlSession.selectOne(
           "MemberDao.findByEmailPassword", params);
+      return m;
     }
   }
 
