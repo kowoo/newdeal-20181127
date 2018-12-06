@@ -1,9 +1,8 @@
 package com.eomcs.lms.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
-import javax.servlet.ServletConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,41 +55,27 @@ public class BoardListServlet extends HttpServlet {
       HttpServletRequest req, HttpServletResponse res)
           throws ServletException, IOException {
     
-    res.setContentType("text/html;charset=UTF-8");
                             //plain 부분이 MIME(Multi-purpose Mail Extension) 타입이다.
     //res.setContentType("text/plain;charset=UTF-8");
-    PrintWriter out = res.getWriter();
-    out.println("<!DOCTYPE html>");
-    out.println("<html>");
-    out.println("<head>");
-    out.println("<meta charset='UTF-8'>");
-    out.println("<style type='text/css'>");
-    out.println("table{");
-    out.println("border-collapse: collapse;");
-    out.println("} </style>");
-    out.println("<title>게시물</title>");
-    out.println("</head>");
-    out.println("<body>");
-    out.println("<h1>게시물</h1>");
-    out.println("<table border='1'>");
-    out.println("<tr>");
-    out.println("<th>번호</th><th>내용</th><th>작성일</th><th>조회수</th>");
-    out.println("</tr>");
-
     try {
       List<Board> list = boardDao.findAll();
-
-      for (Board board : list) {
-        out.println("<tr>");
-        out.printf("<td>%d</td><td>%s</td><td>%s</td><td>%d</td>",
-            board.getNo(), 
-            board.getContents(), 
-            board.getCreatedDate(), 
-            board.getViewCount());
-        out.println("</tr>");
-      }
+      
+      System.out.println(list);
+      
+      //게시물 목록을 JSP가 사용할 수 있도록 보관소에 저장한다.
+      req.setAttribute("list", list);
+      res.setContentType("text/html;charset=UTF-8");
+      
+      //JSP로 실행을 위임한다.
+      RequestDispatcher rd = req.getRequestDispatcher("/board/list.jsp");
+      //contentType은 include하는 쪽에서 지정해야 한다.
+      //include를 사용하면 jsp에 실행을 위임한 후 다시 여기로 돌아온다.
+      //forward를 하면 실행이후 종료.
+      rd.include(req, res);
+      
     } catch (Exception e) {
       e.printStackTrace();
+      throw new ServletException(e);
     }
   }
 } 
