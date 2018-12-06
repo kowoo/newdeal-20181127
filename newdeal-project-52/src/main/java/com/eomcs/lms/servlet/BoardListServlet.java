@@ -24,15 +24,15 @@ import com.eomcs.lms.domain.Board;
 @WebServlet("/board/list")
 public class BoardListServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-  
+
   BoardDao boardDao;
-  
-// 이런 녀석을 남겨두면 터진다.
-//  public ServletConfig getServletConfig() {
-//    // TODO Auto-generated method stub
-//    return null;
-//  }
-  
+
+  // 이런 녀석을 남겨두면 터진다.
+  //  public ServletConfig getServletConfig() {
+  //    // TODO Auto-generated method stub
+  //    return null;
+  //  }
+
   public void init() throws ServletException {
     // 이 메서드는 서블릿 객체가 최초로 생성될 때 생성자 다음에 
     // 바로 호출된다.
@@ -43,32 +43,51 @@ public class BoardListServlet extends HttpServlet {
     ServletContext sc = this.getServletContext();
     ApplicationContext iocContainer = 
         (ApplicationContext) sc.getAttribute("iocContainer");
-    
+
     try {
       boardDao = iocContainer.getBean(BoardDao.class);
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
-  
+
   @Override
   public void doGet(
       HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-
-    res.setContentType("text/plain;charset=UTF-8");
-    PrintWriter out = res.getWriter();
-    out.println("게시물 목록");
+          throws ServletException, IOException {
     
+    res.setContentType("text/html;charset=UTF-8");
+                            //plain 부분이 MIME(Multi-purpose Mail Extension) 타입이다.
+    //res.setContentType("text/plain;charset=UTF-8");
+    PrintWriter out = res.getWriter();
+    out.println("<!DOCTYPE html>");
+    out.println("<html>");
+    out.println("<head>");
+    out.println("<meta charset='UTF-8'>");
+    out.println("<style type='text/css'>");
+    out.println("table{");
+    out.println("border-collapse: collapse;");
+    out.println("} </style>");
+    out.println("<title>게시물</title>");
+    out.println("</head>");
+    out.println("<body>");
+    out.println("<h1>게시물</h1>");
+    out.println("<table border='1'>");
+    out.println("<tr>");
+    out.println("<th>번호</th><th>내용</th><th>작성일</th><th>조회수</th>");
+    out.println("</tr>");
+
     try {
       List<Board> list = boardDao.findAll();
-      
+
       for (Board board : list) {
-        out.printf("%3d, %-20s, %s, %d\n", 
+        out.println("<tr>");
+        out.printf("<td>%d</td><td>%s</td><td>%s</td><td>%d</td>",
             board.getNo(), 
             board.getContents(), 
             board.getCreatedDate(), 
             board.getViewCount());
+        out.println("</tr>");
       }
     } catch (Exception e) {
       e.printStackTrace();
