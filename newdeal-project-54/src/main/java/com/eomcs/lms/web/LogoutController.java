@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LogoutController {
 
-  public LogoutController() {
-  }
-
   @RequestMapping("/auth/logout")
   public String logout(
       HttpServletRequest request, HttpServletResponse response)
