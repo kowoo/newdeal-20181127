@@ -39,5 +39,14 @@
     - jstl은 폴더를 확인해야한다. javax., org., meta 3개 패키지(혹은 폴더)가 있어야함.
     - jstl core를 검색 후 taglib을 가져옴.
 
-### ????
- - 
+
+ ### MVC 아키텍처 활용
+
+ ### HttpSession을 이용한 로그인/로그아웃
+
+ ### Filter를 이용하여 서블릿을 실행하기 전에 특정 작업을 수행한다.
+
+ ### MyBatis의 DAO 구현체 자동 생성하기
+  - AppConfig.java
+    - http://www.mybatis.org/spring 에서 injecting Mappers 를 참고한다.
+    - 클래스에 '@MapperScan' 을 추가한다.

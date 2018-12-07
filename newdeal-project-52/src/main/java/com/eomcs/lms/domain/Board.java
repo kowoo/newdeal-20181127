@@ -8,6 +8,9 @@ public class Board {
   private int viewCount;
   private int writerNo;
   private int lessonNo;
+  //Aggregation 관계를 연습해보자.
+  private Lesson lesson;
+  private Member writer;
   
   public int getNo() {
     return no;
@@ -45,6 +48,16 @@ public class Board {
   public void setLessonNo(int lessonNo) {
     this.lessonNo = lessonNo;
   }
-  
-  
+  public Lesson getLesson() {
+    return lesson;
+  }
+  public void setLesson(Lesson lesson) {
+    this.lesson = lesson;
+  }
+  public Member getWriter() {
+    return writer;
+  }
+  public void setWriter(Member writer) {
+    this.writer = writer;
+  }
 }

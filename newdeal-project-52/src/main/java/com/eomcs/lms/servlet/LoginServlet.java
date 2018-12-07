@@ -1,6 +1,7 @@
 package com.eomcs.lms.servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -27,6 +28,7 @@ public class LoginServlet extends HttpServlet {
         (ApplicationContext) sc.getAttribute("iocContainer");
 
     try {
+      
       memberDao = iocContainer.getBean(MemberDao.class);
     } catch (Exception e) {
       e.printStackTrace();
@@ -46,10 +48,11 @@ public class LoginServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     try {
-      String email = request.getParameter("email");
-      String password = request.getParameter("password");
-
-      Member member = memberDao.findByEmailPassword(email, password);
+      HashMap<String, Object> params = new HashMap<>();
+      params.put("email", request.getParameter("email"));
+      params.put("password", request.getParameter("password"));
+      
+      Member member = memberDao.findByEmailPassword(params);
                         //해당 클라이언트를 위한 HttpSession 객체가 있다면 그 객체를 리턴
                         //없다면 새로 만들어서 리턴
       HttpSession session = request.getSession();
