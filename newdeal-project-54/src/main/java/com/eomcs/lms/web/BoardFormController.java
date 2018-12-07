@@ -5,20 +5,21 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.domain.Member;
 
-@Component("/board/form")
-public class BoardFormController implements PageController {
+@Controller
+public class BoardFormController {
 
   LessonDao lessonDao;
 
   public BoardFormController(LessonDao lessonDao) {
     this.lessonDao = lessonDao;
   }
-  @Override
-  public String execute(
+  @RequestMapping("/board/form")
+  public String form(
       HttpServletRequest request, HttpServletResponse response)
       throws Exception {
     
